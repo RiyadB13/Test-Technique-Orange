@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a838956d-9f8d-4c55-901b-5d79460ccd5a" name="Changes" comment="avancée de l'analyse exploratoire">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Test-Technique-DS-Orange.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Test-Technique-DS-Orange.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebook/exploration.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/exploration.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data-processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataprocessing.py" afterDir="false" />
-    </list>
+    <list default="true" id="a838956d-9f8d-4c55-901b-5d79460ccd5a" name="Changes" comment="ajustements" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736344270692</updated>
-      <workItem from="1736344272061" duration="7267000" />
+      <workItem from="1736344272061" duration="7352000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du dataset">
       <option name="closed" value="true" />
@@ -106,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736354734451</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ajustements">
+      <option name="closed" value="true" />
+      <created>1736365576763</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736365576766</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,16 +115,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ajout du dataset" />
     <MESSAGE value="avancée de l'analyse exploratoire" />
-    <option name="LAST_COMMIT_MESSAGE" value="avancée de l'analyse exploratoire" />
+    <MESSAGE value="ajustements" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>notebook://C:/Users/etudiant/Test-Technique-DS-Orange/notebook/exploration.ipynb</url>
-          <line>429</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
           <url>notebook://C:/Users/etudiant/Test-Technique-DS-Orange/notebook/exploration.ipynb</url>
           <line>5</line>
