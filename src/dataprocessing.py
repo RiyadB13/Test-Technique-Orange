@@ -3,7 +3,7 @@ import os
 
 # Chemins des fichiers
 RAW_DATA_PATH = "data/raw/"
-PROCESSED_DATA_PATH = "data/processed/"
+PROCESSED_DATA_PATH = "C:/Users/etudiant/Test-Technique-DS-Orange/data/processed"
 
 
 def load_raw_data(file_name: str) -> pd.DataFrame:
@@ -32,7 +32,6 @@ def save_processed_data(df: pd.DataFrame, file_name: str):
         df (pd.DataFrame): Données transformées.
         file_name (str): Nom du fichier à enregistrer (CSV).
     """
-    os.makedirs(PROCESSED_DATA_PATH, exist_ok=True)
     file_path = os.path.join(PROCESSED_DATA_PATH, file_name)
     df.to_csv(file_path, index=False)
     print(f"Données enregistrées dans {file_path}.")
