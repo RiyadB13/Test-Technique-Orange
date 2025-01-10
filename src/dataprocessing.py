@@ -49,6 +49,12 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Données transformées.
     """
+    # Copier les valeurs de la première colonne 'Unnamed: 0' dans une nouvelle colonne 'date'
+    if 'Unnamed: 0' in df.columns:
+        df['date'] = df['Unnamed: 0']
+        df = df.drop(columns=['Unnamed: 0'])
+        print("Colonne 'Unnamed: 0' copiée dans 'date' et supprimée.")
+
     # Traitement des valeurs manquantes des colonnes numériques
     numeric_columns = ['marketing_score', 'competition_index', 'purchasing_power_index',
                        'store_traffic', 'customer_satisfaction']
@@ -96,7 +102,11 @@ if __name__ == "__main__":
         exit(1)
 
     # Appliquer le traitement des données
-    df_processed = process_data(df_raw)
+    try:
+        df_processed = process_data(df_raw)
+    except ValueError as e:
+        print(e)
+        exit(1)
 
     # Supprimer les lignes avec Paris comme ville
     try:

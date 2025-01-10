@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a838956d-9f8d-4c55-901b-5d79460ccd5a" name="Changes" comment="ajustements">
-      <change afterPath="$PROJECT_DIR$/data/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/features_engineering.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataprocessing.py" afterDir="false" />
@@ -88,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736344270692</updated>
       <workItem from="1736344272061" duration="10533000" />
-      <workItem from="1736528369184" duration="3177000" />
+      <workItem from="1736528369184" duration="6933000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du dataset">
       <option name="closed" value="true" />
@@ -122,11 +121,30 @@
       <option name="project" value="LOCAL" />
       <updated>1736365657717</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ajustements">
+      <option name="closed" value="true" />
+      <created>1736532009705</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736532009705</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ajout du dataset" />
