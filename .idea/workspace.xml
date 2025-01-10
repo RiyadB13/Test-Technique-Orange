@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a838956d-9f8d-4c55-901b-5d79460ccd5a" name="Changes" comment="ajustements" />
+    <list default="true" id="a838956d-9f8d-4c55-901b-5d79460ccd5a" name="Changes" comment="ajustements">
+      <change afterPath="$PROJECT_DIR$/data/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features_engineering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataprocessing.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Jupyter Notebook" />
         <option value="Python Script" />
       </list>
     </option>
@@ -20,21 +26,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "RiyadB13"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RiyadB13&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RiyadB13/Test-Technique-Orange.git",
-    "accountId": "5d2cacf8-4369-4f08-a5ac-5657047123ec"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RiyadB13/Test-Technique-Orange.git&quot;,
+    &quot;accountId&quot;: &quot;5d2cacf8-4369-4f08-a5ac-5657047123ec&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2rLhTU0kN8thF4R6Jd9L3gSJUq3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -45,7 +51,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/etudiant/Test-Technique-DS-Orange/notebook",
+    "last_opened_file_path": "C:/Users/etudiant/Test-Technique-DS-Orange/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,6 +62,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\etudiant\Test-Technique-DS-Orange\data" />
       <recent name="C:\Users\etudiant\Test-Technique-DS-Orange\notebook" />
       <recent name="C:\Users\etudiant\Test-Technique-DS-Orange\data\raw" />
     </key>
@@ -80,7 +87,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736344270692</updated>
-      <workItem from="1736344272061" duration="7352000" />
+      <workItem from="1736344272061" duration="10533000" />
+      <workItem from="1736528369184" duration="3177000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du dataset">
       <option name="closed" value="true" />
@@ -106,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736365576766</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ajustements">
+      <option name="closed" value="true" />
+      <created>1736365657717</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736365657717</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,16 +133,5 @@
     <MESSAGE value="avancée de l'analyse exploratoire" />
     <MESSAGE value="ajustements" />
     <option name="LAST_COMMIT_MESSAGE" value="ajustements" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>notebook://C:/Users/etudiant/Test-Technique-DS-Orange/notebook/exploration.ipynb</url>
-          <line>5</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
