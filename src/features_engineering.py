@@ -10,16 +10,6 @@ FEATURES_DATA_PATH = os.path.join(BASE_DIR, "data", "features")
 
 
 def encode_categorical_features(df: pd.DataFrame, categorical_columns: list) -> pd.DataFrame:
-    """
-    Encode les variables catégoriques en utilisant le One-Hot Encoding.
-
-    Args:
-        df (pd.DataFrame): Le DataFrame initial contenant des colonnes catégoriques.
-        categorical_columns (list): Liste des colonnes catégoriques à encoder.
-
-    Returns:
-        pd.DataFrame: Le DataFrame avec les colonnes catégoriques encodées.
-    """
     for col in categorical_columns:
         if col not in df.columns:
             raise ValueError(f"La colonne '{col}' n'existe pas dans le DataFrame.")
@@ -29,15 +19,6 @@ def encode_categorical_features(df: pd.DataFrame, categorical_columns: list) -> 
 
 
 def add_temporal_features(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Ajoute des features temporelles basées sur la colonne 'date'.
-
-    Args:
-        df (pd.DataFrame): Le DataFrame contenant une colonne 'date'.
-
-    Returns:
-        pd.DataFrame: Le DataFrame avec des features temporelles ajoutées.
-    """
     if 'date' not in df.columns:
         raise ValueError("La colonne 'date' n'existe pas dans le DataFrame.")
 
@@ -54,15 +35,6 @@ def add_temporal_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def filter_features(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Filtre les colonnes et catégories spécifiques pour les exclure du DataFrame.
-
-    Args:
-        df (pd.DataFrame): Le DataFrame avec les features initiales.
-
-    Returns:
-        pd.DataFrame: Le DataFrame avec les features filtrées.
-    """
     # Supprimer la colonne 'tech_event'
     if 'tech_event' in df.columns:
         df = df.drop(columns=['tech_event'])
@@ -89,15 +61,6 @@ def filter_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Applique l'ensemble des étapes d'ingénierie des features au DataFrame.
-
-    Args:
-        df (pd.DataFrame): Le DataFrame initial.
-
-    Returns:
-        pd.DataFrame: Le DataFrame avec toutes les nouvelles features ajoutées.
-    """
     # Ajouter les features temporelles
     df = add_temporal_features(df)
 
@@ -114,14 +77,6 @@ def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def save_features_data(df: pd.DataFrame, file_path: str):
-    """
-    Enregistre les données des features dans un fichier CSV.
-    Si le fichier existe déjà, il sera écrasé.
-
-    Args:
-        df (pd.DataFrame): Données des features.
-        file_path (str): Chemin du fichier à sauvegarder.
-    """
     # Créer le répertoire s'il n'existe pas
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 

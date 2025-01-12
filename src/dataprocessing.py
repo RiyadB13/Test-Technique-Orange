@@ -10,15 +10,6 @@ PROCESSED_DATA_PATH = os.path.join(BASE_DIR, "data", "processed")
 
 
 def load_raw_data(file_name: str) -> pd.DataFrame:
-    """
-    Charge les données brutes depuis le dossier 'raw'.
-
-    Args:
-        file_name (str): Nom du fichier à charger (CSV).
-
-    Returns:
-        pd.DataFrame: Données brutes chargées.
-    """
     file_path = os.path.join(RAW_DATA_PATH, file_name)
     if os.path.exists(file_path):
         print(f"Chargement des données depuis {file_path}...")
@@ -28,14 +19,6 @@ def load_raw_data(file_name: str) -> pd.DataFrame:
 
 
 def save_processed_data(df: pd.DataFrame, file_name: str):
-    """
-    Enregistre les données traitées dans le dossier 'processed'.
-    Si le fichier existe déjà, il sera écrasé.
-
-    Args:
-        df (pd.DataFrame): Données transformées.
-        file_name (str): Nom du fichier à enregistrer (CSV).
-    """
     os.makedirs(PROCESSED_DATA_PATH, exist_ok=True)
     file_path = os.path.join(PROCESSED_DATA_PATH, file_name)
 
@@ -49,15 +32,6 @@ def save_processed_data(df: pd.DataFrame, file_name: str):
 
 
 def process_data(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Applique les transformations nécessaires au dataset.
-
-    Args:
-        df (pd.DataFrame): Données brutes.
-
-    Returns:
-        pd.DataFrame: Données transformées.
-    """
     if 'Unnamed: 0' in df.columns:
         df['date'] = df['Unnamed: 0']
         df = df.drop(columns=['Unnamed: 0'])
@@ -71,7 +45,10 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
     numeric_columns = ['marketing_score', 'competition_index', 'purchasing_power_index',
                        'store_traffic', 'customer_satisfaction',
                        'jPhone_Pro_revenue', 'Kaggle_Pixel_5_revenue', 'Planet_SX_revenue']
-    df[numeric_columns] = df[numeric_columns].interpolate(method='linear')
+
+    # Interpolation linéaire suivie de ffill/bfill
+    df[numeric_columns] = df[numeric_columns].interpolate(method='linear', axis=0)
+    df[numeric_columns] = df[numeric_columns].fillna(method='ffill').fillna(method='bfill')
 
     categorical_columns = ['weather_condition', '5g_phase', 'public_transport']
     for col in categorical_columns:
@@ -86,15 +63,6 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def filter_city(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Filtre les données pour ne conserver qu'une ville choisie par l'utilisateur.
-
-    Args:
-        df (pd.DataFrame): DataFrame à filtrer.
-
-    Returns:
-        pd.DataFrame: DataFrame filtré pour la ville choisie.
-    """
     if 'city' not in df.columns:
         raise ValueError("La colonne 'city' n'existe pas dans le DataFrame.")
 
@@ -112,15 +80,6 @@ def filter_city(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_future_dates(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Ajoute des lignes pour les dates du premier trimestre 2025 au DataFrame.
-
-    Args:
-        df (pd.DataFrame): DataFrame existant.
-
-    Returns:
-        pd.DataFrame: DataFrame étendu avec les futures dates ajoutées.
-    """
     # Générer les futures dates pour Q1 2025
     future_dates = pd.date_range(start="2025-01-01", end="2025-03-31", freq="D")
     future_data = pd.DataFrame({'date': future_dates})
@@ -138,35 +97,19 @@ def add_future_dates(df: pd.DataFrame) -> pd.DataFrame:
     future_data['date'] = pd.to_datetime(future_data['date'])
     df = pd.concat([df, future_data], ignore_index=True)
 
-    # Interpolation des colonnes numériques pour chaque jour et mois
+    # Interpolation pour les colonnes numériques
     for col in numeric_columns:
-        df[col] = df.groupby([df['date'].dt.month, df['date'].dt.day])[col].transform(
-            lambda x: x.interpolate(method='linear')
-        )
+        df[col] = df[col].interpolate(method='linear', axis=0).fillna(method='ffill').fillna(method='bfill')
 
-    # Remplir les colonnes catégoriques (sauf 5g_phase) par le mode pour chaque jour du mois
+    # Remplir les colonnes catégoriques
     for col in categorical_columns:
-        for month in df['date'].dt.month.unique():
-            for day in df['date'].dt.day.unique():
-                mode_value = df.loc[
-                    (df['date'].dt.month == month) &
-                    (df['date'].dt.day == day) &
-                    (df['date'] < "2025-01-01"),  # Seulement les années précédentes
-                    col
-                ].mode()
-                if not mode_value.empty:
-                    df.loc[
-                        (df['date'].dt.month == month) &
-                        (df['date'].dt.day == day) &
-                        (df['date'] >= "2025-01-01"),  # Dates futures
-                        col
-                    ] = mode_value[0]
+        df[col] = df[col].fillna(method='ffill').fillna(method='bfill')
 
     # Remplir 5g_phase par la valeur globale la plus fréquente
     if '5g_phase' in df.columns:
-        mode_5g_phase = df.loc[df['date'] < "2025-01-01", '5g_phase'].mode()
+        mode_5g_phase = df['5g_phase'].mode()
         if not mode_5g_phase.empty:
-            df['5g_phase'].fillna(mode_5g_phase[0], inplace=True)
+            df['5g_phase'] = df['5g_phase'].fillna(mode_5g_phase[0])
 
     return df
 
@@ -177,19 +120,25 @@ if __name__ == "__main__":
     except FileNotFoundError as e:
         print(e)
         exit(1)
-
     try:
-        df_processed = process_data(df_raw)
+        df_filtered = filter_city(df_raw)
     except ValueError as e:
         print(e)
         exit(1)
 
     try:
-        df_filtered = filter_city(df_processed)
+        df_processed = process_data(df_filtered)
     except ValueError as e:
         print(e)
         exit(1)
 
-    df_with_future = add_future_dates(df_filtered)
+    if df_processed.isnull().sum().sum() > 0:
+        print("Des valeurs manquantes persistent après le traitement. Tentative de correction...")
+        numeric_columns = ['marketing_score', 'competition_index', 'purchasing_power_index',
+                           'store_traffic', 'customer_satisfaction',
+                           'jPhone_Pro_revenue', 'Kaggle_Pixel_5_revenue', 'Planet_SX_revenue']
+        df_processed[numeric_columns] = df_processed[numeric_columns].fillna(method='ffill').fillna(method='bfill')
+
+    df_with_future = add_future_dates(df_processed)
 
     save_processed_data(df_with_future, "telecom_sales_data_filtered.csv")
